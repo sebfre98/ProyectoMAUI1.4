@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:SQLiteDemo.Models"
+             xmlns:searchHandlers="clr-namespace:SQLiteDemo.SearchHandlers"
+             xmlns:viewModels="clr-namespace:SQLiteDemo.ViewModels"
+             x:DataType="viewModels:SedeListPageViewModel"
+             
+             x:Class="SQLiteDemo.Views.SedeListPage"
+             Title="LISTA DE SEDES ">
+    <Shell.SearchHandler>
+        <searchHandlers:SedeSearchHandler 
+            Placeholder="Buscar Sede"
+            ShowsResults="True"
+            HorizontalTextAlignment="End"
+            QueryIcon="search"
+            ClearIcon="clear"
+            NavigationRoute="AddUpdateSedeDetail"
+            Sedes="{x:Static viewModels:SedeListPageViewModel.SedesListForSearch}">
+            <searchHandlers:SedeSearchHandler.ItemTemplate>
+                <DataTemplate x:DataType="models:SedeModel">
+                    <Grid Margin="5" RowDefinitions="Auto" ColumnDefinitions="40,Auto">
+                        <Image Grid.Row="0" Grid.Column="0" Source="user" HeightRequest="35" WidthRequest="35" />
+                        <Label Grid.Row="0" Grid.Column="1" Text="{Binding FullSedes}" FontSize="18" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                    </Grid>
+                </DataTemplate>
+            </searchHandlers:SedeSearchHandler.ItemTemplate>
+        </searchHandlers:SedeSearchHandler>
+    </Shell.SearchHandler>
+    <StackLayout Margin="10">
+        <Label  Text="Lista de Sedes " TextColor="Black"  FontSize="28"/>
+        <Image Source="Images/wolf.jpg" WidthRequest="100"/>
+        <Button Text="Agregar Sede " FontSize="Subtitle" TextColor="White" BackgroundColor="MidnightBlue" Command="{Binding AddUpdateSedeCommand}" HorizontalOptions="EndAndExpand" />
+      
+        <CollectionView ItemsSource="{Binding Sede}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:SedeModel">
+                    <Frame Margin="10" Padding="10">
+                        <StackLayout >
+                            <HorizontalStackLayout Spacing="15">
+                                <Label Text="{Binding NomSede}" FontSize="18" FontAttributes="Bold" />
+                            </HorizontalStackLayout>
+                        </StackLayout>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewModels:SedeListPageViewModel}},Path=DisplayActionCommand}"
+                                                  CommandParameter="{Binding .}" />
+                        </Frame.GestureRecognizers>
+                    </Frame>
+                   
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
+</ContentPage>

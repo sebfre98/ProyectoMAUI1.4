@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SQLiteDemo.Views.AddUpdateStudentDetail"
+             Title="Agregar / Actualizar Estudiante">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="TextColor" Value="SlateBlue" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <StackLayout Margin="10" Spacing="15">
+        <VerticalStackLayout>
+            <Label Text="Documento"  />
+            <Entry Text="{Binding StudentDetail.Document}" ClearButtonVisibility="WhileEditing" MaxLength="10" Keyboard="Numeric" Placeholder="Documento" />
+            <BoxView HeightRequest="0.8" Color="Gray" />
+        </VerticalStackLayout>
+        <VerticalStackLayout>
+            <Label Text="Nombres"  />
+            <Entry Text="{Binding StudentDetail.FirstName}" ClearButtonVisibility="WhileEditing" TextTransform="Uppercase" Placeholder="Nombres" />
+            <BoxView HeightRequest="0.8" Color="Gray" />
+        </VerticalStackLayout>
+
+
+        <VerticalStackLayout>
+            <Label Text="Apellidos" />
+            <Entry  Text="{Binding StudentDetail.LastName}" ClearButtonVisibility="WhileEditing" TextTransform="Uppercase" Placeholder="Apellidos" />
+            <BoxView HeightRequest="0.8" Color="Gray" />
+        </VerticalStackLayout>
+
+
+        <VerticalStackLayout>
+            <Label Text="Email" />
+            <Entry Text="{Binding StudentDetail.Email}" ClearButtonVisibility="WhileEditing" TextTransform="Lowercase" Placeholder="Email" />
+            <BoxView HeightRequest="0.8" Color="Gray" />
+        </VerticalStackLayout>
+        <VerticalStackLayout>
+            <Label Text="Teléfono" />
+            <Entry Text="{Binding StudentDetail.Phone}" ClearButtonVisibility="WhileEditing" MaxLength="10" Keyboard="Numeric" Placeholder="Telefono" />
+            <BoxView HeightRequest="0.8" Color="Gray" />
+        </VerticalStackLayout>
+
+        <Button Text="Guardar " TextColor="WhiteSmoke" BackgroundColor="MidnightBlue" Command="{Binding AddUpdateStudentCommand}"/>
+        <VerticalStackLayout>
+            <Image Source="Images/wolf.jpg" WidthRequest="100"/>
+        </VerticalStackLayout>
+    </StackLayout>
+</ContentPage>
